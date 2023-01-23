@@ -1,10 +1,10 @@
 package azuregofunction
 
-type NormalHttpRequest struct {
-	//Headers    map[string]interface{}
+type DataHttpRequest struct {
 	//Identities map[string]interface{}
 	//Params     map[string]interface{}
-	Method string
-	Query  map[string]string
-	Url    string
+	Url     string
+	Method  string
+	Query   map[string]string
+	Headers map[string]interface{}
 }
