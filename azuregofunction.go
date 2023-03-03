@@ -54,6 +54,8 @@ type InvokeRequest struct {
 
 const (
 	BlobDataKey = "triggerBlob"
+	BlobNameKey = "name"
+	BlobUriKey  = "Uri"
 )
 
 func ParseFunctionHostRequest(w http.ResponseWriter, r *http.Request) (*InvokeRequest, error) {
@@ -86,4 +88,12 @@ func ParseFunctionHostRequest(w http.ResponseWriter, r *http.Request) (*InvokeRe
 // Return blob data
 func BlobData(ir *InvokeRequest) interface{} {
 	return ir.Data[BlobDataKey]
+}
+
+func BlobName(ir *InvokeRequest) interface{} {
+	return ir.Metadata[BlobNameKey]
+}
+
+func BlobUri(ir *InvokeRequest) interface{} {
+	return ir.Metadata[BlobUriKey]
 }
