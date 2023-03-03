@@ -52,6 +52,10 @@ type InvokeRequest struct {
 	Metadata map[string]interface{}
 }
 
+const (
+	BlobDataKey = "triggerBlob"
+)
+
 func ParseFunctionHostRequest(w http.ResponseWriter, r *http.Request) (*InvokeRequest, error) {
 	fmt.Println("--------------------")
 	fmt.Println("Parsing request from function host")
@@ -77,4 +81,9 @@ func ParseFunctionHostRequest(w http.ResponseWriter, r *http.Request) (*InvokeRe
 	fmt.Println("----------")
 
 	return &invokeReq, nil
+}
+
+// Return blob data
+func BlobData(ir *InvokeRequest) interface{} {
+	return ir.Data[BlobDataKey]
 }
