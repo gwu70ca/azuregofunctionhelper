@@ -53,10 +53,11 @@ type InvokeRequest struct {
 }
 
 const (
-	BlobDataKey   = "triggerBlob"
-	BlobNameKey   = "name"
-	BlobUriKey    = "Uri"
-	QueneItemName = "myQueueItem"
+	BlobDataKey = "triggerBlob"
+	BlobNameKey = "name"
+	BlobUriKey  = "Uri"
+	//This is defined in function.json of the function
+	//QueneItemName = "myQueueItem"
 )
 
 func ParseFunctionHostRequest(w http.ResponseWriter, r *http.Request) (*InvokeRequest, error) {
@@ -99,6 +100,6 @@ func BlobUri(ir *InvokeRequest) string {
 	return fmt.Sprintf("%v", ir.Metadata[BlobUriKey])
 }
 
-func QueueMessage(ir *InvokeRequest) string {
-	return fmt.Sprintf("%v", ir.Data[QueneItemName])
+func QueueMessage(ir *InvokeRequest, bindingName string) string {
+	return fmt.Sprintf("%v", ir.Data[bindingName])
 }
