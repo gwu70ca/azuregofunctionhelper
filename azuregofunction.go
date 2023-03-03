@@ -2,7 +2,9 @@ package azuregofunction
 
 import (
 	"bytes"
+	"encoding/json"
 	"fmt"
+	"net/http"
 )
 
 type DataHttpRequest struct {
@@ -28,4 +30,51 @@ func (r DataHttpRequest) String() string {
 		buffer.WriteString(fmt.Sprintf("\t%v=%v\n", k, v))
 	}
 	return buffer.String()
+}
+
+type ReturnValue struct {
+	Data string
+}
+type InvokeResponse struct {
+	Outputs     map[string]interface{}
+	Logs        []string
+	ReturnValue interface{}
+}
+
+type InvokeResponseStringReturnValue struct {
+	Outputs     map[string]interface{} //shows as Http response
+	Logs        []string               //shows in log
+	ReturnValue string                 //saved to output binding
+}
+
+type InvokeRequest struct {
+	Data     map[string]interface{}
+	Metadata map[string]interface{}
+}
+
+func ParseFunctionHostRequest(w http.ResponseWriter, r *http.Request) (*InvokeRequest, error) {
+	fmt.Println("--------------------")
+	fmt.Println("Parsing request from function host")
+
+	var invokeReq InvokeRequest
+	d := json.NewDecoder(r.Body)
+	decodeErr := d.Decode(&invokeReq)
+	if decodeErr != nil {
+		// bad JSON or unrecognized json field
+		http.Error(w, decodeErr.Error(), http.StatusBadRequest)
+		return nil, decodeErr
+	}
+	fmt.Println("The JSON data is:")
+	fmt.Println("----------")
+	for k, v := range invokeReq.Data {
+		fmt.Printf("%v=%v\n", k, v)
+	}
+	fmt.Println("----------")
+	fmt.Println("The JSON metadata is:")
+	for k, v := range invokeReq.Metadata {
+		fmt.Printf("%v=%v\n", k, v)
+	}
+	fmt.Println("----------")
+
+	return &invokeReq, nil
 }
