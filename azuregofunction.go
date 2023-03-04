@@ -103,3 +103,7 @@ func BlobUri(ir *InvokeRequest) string {
 func QueueMessage(ir *InvokeRequest, bindingName string) string {
 	return fmt.Sprintf("%v", ir.Data[bindingName])
 }
+
+func EventHubMessage(ir *InvokeRequest, bindingName string) string {
+	return fmt.Sprintf("%v", ir.Data[bindingName])
+}
