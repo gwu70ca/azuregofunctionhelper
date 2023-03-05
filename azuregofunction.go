@@ -59,7 +59,7 @@ const (
 )
 
 func ParseFunctionHostRequest(w http.ResponseWriter, r *http.Request) (*InvokeRequest, error) {
-	fmt.Println("--------------------")
+	fmt.Println("+--------------------+")
 	fmt.Println("Parsing request from function host")
 
 	var invokeReq InvokeRequest
@@ -72,15 +72,18 @@ func ParseFunctionHostRequest(w http.ResponseWriter, r *http.Request) (*InvokeRe
 	}
 	fmt.Println("The JSON data is:")
 	fmt.Println("----------")
+	fmt.Println(fmt.Sprintf("Type of nvokeReq.Data: %v", reflect.TypeOf(invokeReq.Data)))
 	for k, v := range invokeReq.Data {
 		fmt.Printf("%v=%v\n", k, v)
 	}
-	fmt.Println("----------")
+
 	fmt.Println("The JSON metadata is:")
+	fmt.Println("----------")
+	fmt.Println(fmt.Sprintf("Type of nvokeReq.Metadata: %v", reflect.TypeOf(invokeReq.Metadata)))
 	for k, v := range invokeReq.Metadata {
 		fmt.Printf("%v=%v\n", k, v)
 	}
-	fmt.Println("----------")
+	fmt.Println("+--------------------+")
 
 	return &invokeReq, nil
 }
@@ -104,6 +107,6 @@ func QueueMessage(ir *InvokeRequest, bindingName string) string {
 
 func EventHubMessage(ir *InvokeRequest, bindingName string) string {
 	inMsg := ir.Data[bindingName]
-	fmt.Println(reflect.TypeOf(inMsg))
+	fmt.Println(fmt.Sprintf("Type of event hub message: %v", reflect.TypeOf(inMsg)))
 	return fmt.Sprintf("%v", inMsg)
 }
