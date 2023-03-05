@@ -53,11 +53,8 @@ type InvokeRequest struct {
 }
 
 const (
-	BlobDataKey = "triggerBlob"
 	BlobNameKey = "name"
 	BlobUriKey  = "Uri"
-	//This is defined in function.json of the function
-	//QueneItemName = "myQueueItem"
 )
 
 func ParseFunctionHostRequest(w http.ResponseWriter, r *http.Request) (*InvokeRequest, error) {
@@ -88,8 +85,8 @@ func ParseFunctionHostRequest(w http.ResponseWriter, r *http.Request) (*InvokeRe
 }
 
 // Return blob data
-func BlobData(ir *InvokeRequest) interface{} {
-	return ir.Data[BlobDataKey]
+func BlobData(ir *InvokeRequest, bindingName string) interface{} {
+	return ir.Data[bindingName]
 }
 
 func BlobName(ir *InvokeRequest) string {
