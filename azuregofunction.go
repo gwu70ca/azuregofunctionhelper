@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"reflect"
 )
 
 type DataHttpRequest struct {
@@ -102,5 +103,7 @@ func QueueMessage(ir *InvokeRequest, bindingName string) string {
 }
 
 func EventHubMessage(ir *InvokeRequest, bindingName string) string {
-	return fmt.Sprintf("%v", ir.Data[bindingName])
+	inMsg := ir.Data[bindingName]
+	fmt.Println(reflect.TypeOf(inMsg))
+	return fmt.Sprintf("%v", inMsg)
 }
