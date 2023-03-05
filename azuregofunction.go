@@ -56,6 +56,7 @@ type InvokeRequest struct {
 const (
 	BlobNameKey = "name"
 	BlobUriKey  = "Uri"
+	HttpReqKey  = "req"
 )
 
 func ParseFunctionHostRequest(w http.ResponseWriter, r *http.Request) (*InvokeRequest, error) {
@@ -72,14 +73,14 @@ func ParseFunctionHostRequest(w http.ResponseWriter, r *http.Request) (*InvokeRe
 	}
 	fmt.Println("The JSON data is:")
 	fmt.Println("----------")
-	fmt.Println(fmt.Sprintf("Type of nvokeReq.Data: %v", reflect.TypeOf(invokeReq.Data)))
+	fmt.Println(fmt.Sprintf("Type of invokeReq.Data: %v", reflect.TypeOf(invokeReq.Data)))
 	for k, v := range invokeReq.Data {
 		fmt.Printf("%v=%v\n", k, v)
 	}
 
 	fmt.Println("The JSON metadata is:")
 	fmt.Println("----------")
-	fmt.Println(fmt.Sprintf("Type of nvokeReq.Metadata: %v", reflect.TypeOf(invokeReq.Metadata)))
+	fmt.Println(fmt.Sprintf("Type of invokeReq.Metadata: %v", reflect.TypeOf(invokeReq.Metadata)))
 	for k, v := range invokeReq.Metadata {
 		fmt.Printf("%v=%v\n", k, v)
 	}
@@ -109,4 +110,46 @@ func EventHubMessage(ir *InvokeRequest, bindingName string) string {
 	inMsg := ir.Data[bindingName]
 	fmt.Println(fmt.Sprintf("Type of event hub message: %v", reflect.TypeOf(inMsg)))
 	return fmt.Sprintf("%v", inMsg)
+}
+
+func HttpRequestDataWithBinding(ir *InvokeRequest, bindingName string) *DataHttpRequest {
+	return parseDataHttpRequest(ir.Data[bindingName])
+}
+
+func HttpRequestData(ir *InvokeRequest) *DataHttpRequest {
+	return parseDataHttpRequest(ir.Data[HttpReqKey])
+}
+
+/*
+func HttpRequestMetaData(ir *InvokeRequest, bindingName string) *DataHttpRequest {
+	name := HttpReq
+	if bindingName != "" {
+		name = bindingName
+	}
+
+	return parseDataHttpRequest(ir.Data[name])
+}
+*/
+
+func parseDataHttpRequest(req interface{}) *DataHttpRequest {
+	httpRequest := DataHttpRequest{}
+
+	v := req.(map[string]interface{})
+	for k, v := range v {
+		fmt.Printf("%v=%v\n", k, v)
+		if k == "Url" {
+			httpRequest.Url = v.(string)
+		} else if k == "Method" {
+			httpRequest.Method = v.(string)
+		} else if k == "Query" {
+			m := v.(map[string]interface{})
+			pm := make(map[string]string)
+			for mk, mv := range m {
+				pm[mk] = mv.(string)
+			}
+			httpRequest.Query = pm
+		}
+	}
+
+	return &httpRequest
 }
