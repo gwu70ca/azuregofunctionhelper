@@ -140,7 +140,7 @@ func HttpRequestMetaData(ir *InvokeRequest, bindingName string) *DataHttpRequest
 
 func parseDataHttpRequest(req interface{}) *DataHttpRequest {
 	fmt.Println("+--------------------+")
-	fmt.Println("Generating data http request")
+	fmt.Println("Generating http request data")
 	dataHttpRequest := DataHttpRequest{Request: http.Request{}}
 
 	var queryValues string
