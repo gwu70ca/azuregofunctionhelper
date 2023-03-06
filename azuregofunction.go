@@ -5,29 +5,32 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"net/url"
 	"reflect"
+	"strings"
 )
 
 type DataHttpRequest struct {
+	Request http.Request
 	//Identities map[string]interface{}
 	//Params     map[string]interface{}
-	Url     string
-	Method  string
-	Query   map[string]string
-	Headers map[string]interface{}
+	//Url     string
+	//Method  string
+	//Query   map[string]string
+	//Headers map[string][]string
 }
 
 func (r DataHttpRequest) String() string {
 	var buffer bytes.Buffer
 
-	buffer.WriteString(fmt.Sprintf("URL:%v\n" + r.Url))
-	buffer.WriteString(fmt.Sprintf("Method:%v\n" + r.Method))
+	buffer.WriteString(fmt.Sprintf("URL:%v\n" + r.Request.URL.String()))
+	buffer.WriteString(fmt.Sprintf("Method:%v\n" + r.Request.Method))
 	buffer.WriteString(fmt.Sprintf("Headers:\n"))
-	for k, v := range r.Headers {
+	for k, v := range r.Request.Header {
 		buffer.WriteString(fmt.Sprintf("\t%v=%v\n", k, v))
 	}
 	buffer.WriteString(fmt.Sprintf("Query:\n"))
-	for k, v := range r.Query {
+	for k, v := range r.Request.URL.Query() {
 		buffer.WriteString(fmt.Sprintf("\t%v=%v\n", k, v))
 	}
 	return buffer.String()
@@ -132,24 +135,39 @@ func HttpRequestMetaData(ir *InvokeRequest, bindingName string) *DataHttpRequest
 */
 
 func parseDataHttpRequest(req interface{}) *DataHttpRequest {
-	httpRequest := DataHttpRequest{}
+	fmt.Println("+--------------------+")
+	fmt.Println("Generating data http request")
+	dataHttpRequest := DataHttpRequest{Request: http.Request{}}
 
+	var queryValues string
+
+	var err error
 	v := req.(map[string]interface{})
 	for k, v := range v {
 		fmt.Printf("%v=%v\n", k, v)
 		if k == "Url" {
-			httpRequest.Url = v.(string)
-		} else if k == "Method" {
-			httpRequest.Method = v.(string)
-		} else if k == "Query" {
-			m := v.(map[string]interface{})
-			pm := make(map[string]string)
-			for mk, mv := range m {
-				pm[mk] = mv.(string)
+			dataHttpRequest.Request.URL, err = url.Parse(v.(string))
+			if err != nil {
+				fmt.Println(err)
 			}
-			httpRequest.Query = pm
+		} else if k == "Method" {
+			dataHttpRequest.Request.Method = v.(string)
+		} else if k == "Query" {
+			var sb strings.Builder
+			m := v.(map[string]interface{})
+			//pm := make(map[string]string)
+			for mk, mv := range m {
+				//pm[mk] = mv.(string)
+				sb.WriteString(fmt.Sprintf("%v=%v", mk, mv))
+			}
+			queryValues = sb.String()
 		}
 	}
 
-	return &httpRequest
+	if dataHttpRequest.Request.URL != nil {
+		fmt.Println("Set raw query :" + queryValues)
+		dataHttpRequest.Request.URL.RawQuery = queryValues
+	}
+	fmt.Println("+--------------------+")
+	return &dataHttpRequest
 }
