@@ -157,20 +157,25 @@ func parseDataHttpRequest(req interface{}) *DataHttpRequest {
 		} else if k == "Method" {
 			dataHttpRequest.Method = v.(string)
 		} else if k == "Query" {
+			fmt.Println("converting query")
 			var sb strings.Builder
 			m := v.(map[string]interface{})
-			//pm := make(map[string]string)
 			for mk, mv := range m {
-				//pm[mk] = mv.(string)
 				sb.WriteString(fmt.Sprintf("%v=%v", mk, mv))
 			}
 			queryValues = sb.String()
 		} else if k == "Headers" {
-			hm := make(map[string][]string)
+			fmt.Println("converting headers")
+			m := v.(map[string][]interface{})
 
-			m := v.(map[string]interface{})
+			hm := make(map[string][]string)
 			for mk, mv := range m {
-				hm[mk] = append(hm[mk], mv.(string))
+				s := make([]string, len(mv))
+				for i, v := range mv {
+					s[i] = fmt.Sprint(v)
+				}
+
+				hm[mk] = s
 			}
 			dataHttpRequest.Headers = hm
 		}
