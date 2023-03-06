@@ -171,15 +171,17 @@ func parseDataHttpRequest(req interface{}) *DataHttpRequest {
 			hm := make(map[string][]string)
 			for mk, mv := range m {
 				fmt.Println(reflect.TypeOf(mv))
-				hm[mk][0] = fmt.Sprint(mv)
-				/*
-					s := make([]string, len(mv))
-					for i, v := range mv {
-						s[i] = fmt.Sprint(v)
-					}
+				//hm[mk][0] = fmt.Sprint(mv)
 
-					hm[mk] = s
-				*/
+				hv := mv.([]interface{})
+
+				s := make([]string, len(hv))
+				for i, v := range hv {
+					s[i] = fmt.Sprint(v)
+				}
+
+				hm[mk] = s
+
 			}
 			dataHttpRequest.Headers = hm
 		}
