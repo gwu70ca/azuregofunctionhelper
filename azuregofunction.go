@@ -166,16 +166,20 @@ func parseDataHttpRequest(req interface{}) *DataHttpRequest {
 			queryValues = sb.String()
 		} else if k == "Headers" {
 			fmt.Println("converting headers")
-			m := v.(map[string][]interface{})
+			m := v.(map[string]interface{})
 
 			hm := make(map[string][]string)
 			for mk, mv := range m {
-				s := make([]string, len(mv))
-				for i, v := range mv {
-					s[i] = fmt.Sprint(v)
-				}
+				fmt.Println(reflect.TypeOf(mv))
+				hm[mk][0] = fmt.Sprint(mv)
+				/*
+					s := make([]string, len(mv))
+					for i, v := range mv {
+						s[i] = fmt.Sprint(v)
+					}
 
-				hm[mk] = s
+					hm[mk] = s
+				*/
 			}
 			dataHttpRequest.Headers = hm
 		}
