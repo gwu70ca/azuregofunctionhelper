@@ -156,16 +156,17 @@ func parseDataHttpRequest(req interface{}) *DataHttpRequest {
 			m := v.(map[string]interface{})
 			var buf strings.Builder
 			for mk, mv := range m {
-				hv := mv.([]interface{})
+				hv := mv.(string)
 
 				buf.WriteString(mk)
 				buf.WriteString("=")
-				for i, v := range hv {
+				buf.WriteString(hv)
+				/*for i, v := range hv {
 					buf.WriteString(v.(string))
 					if i != len(hv)-1 {
 						buf.WriteString(",")
 					}
-				}
+				}*/
 				buf.WriteString("&")
 			}
 			queryValues = buf.String()
