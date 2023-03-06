@@ -14,56 +14,55 @@ $
 2023-03-05T07:33:31Z   [Information]   Type of invokeReq.Data: map[string]interface {}
 2023-03-05T07:33:31Z   [Information]   req=map
 [
-    Headers:map
-    [
+    Headers:map[
         Accept:[text/html, application/xhtml+xml, application/xml; q=0.9, image/webp, image/apng, */*; q=0.8, application/signed-exchange; v=b3; q=0.7] 
         Accept-Encoding:[gzip, deflate, br] 
         Accept-Language:[en-US, en; q=0.9] 
-        CLIENT-IP:[24.18.126.161:57738] 
+        CLIENT-IP:[24.18.126.161:57841] 
         Content-Length:[0] 
         DISGUISED-HOST:[gofunction.azurewebsites.net] 
         Host:[gofunction.azurewebsites.net] 
         Max-Forwards:[10] 
-        Request-Id:[|9e859f75-449c18b46f1b33ed.1.] 
+        Request-Id:[|2732ec1f-4e9be62473992403.1.] 
         Sec-Fetch-Dest:[document] 
         Sec-Fetch-Mode:[navigate] 
         Sec-Fetch-Site:[none] 
         Sec-Fetch-User:[?1] 
-        User-Agent:[Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36 Edg/110.0.1587.63]
+        User-Agent:[Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36 Edg/110.0.1587.63] 
         WAS-DEFAULT-HOSTNAME:[gofunction.azurewebsites.net] 
-        X-ARR-LOG-ID:[a358aa2a-1c91-47d2-ab2e-307e126b12b7] 
+        X-ARR-LOG-ID:[5fde7c5e-83d0-43b1-b1d4-ae0d163eeb56] 
         X-ARR-SSL:[2048|256|CN=Microsoft Azure TLS Issuing CA 05, O=Microsoft Corporation, C=US|CN=*.azurewebsites.net, O=Microsoft Corporation, L=Redmond, S=WA, C=US] 
         X-AppService-Proto:[https] 
         X-Client-IP:[24.18.126.161] 
-        X-Client-Port:[57738] 
-        X-Forwarded-For:[24.18.126.161:57738] 
+        X-Client-Port:[57841] 
+        X-Forwarded-For:[24.18.126.161:57841] 
         X-Forwarded-Proto:[https] 
         X-Forwarded-TlsVersion:[1.2] 
-        X-Original-URL:[/api/HttpTriggerWithOutputs?name=Micky&host=Rose] 
+        X-Original-URL:[/api/HttpTriggerWithOutputs?name=Micky&host=Rose&host=JJ,Lili,LuLu] 
         X-SITE-DEPLOYMENT-ID:[gofunction] 
-        X-WAWS-Unencoded-URL:[/api/HttpTriggerWithOutputs?name=Micky&host=Rose] 
+        X-WAWS-Unencoded-URL:[/api/HttpTriggerWithOutputs?name=Micky&host=Rose&host=JJ,Lili,LuLu] 
         sec-ch-ua:["Chromium";v="110", "Not A(Brand";v="24", "Microsoft Edge";v="110"] 
         sec-ch-ua-mobile:[?0] 
         sec-ch-ua-platform:["Windows"]
     ] 
     Identities:
-    [
-        map[
-            Actor:<nil> 
-            AuthenticationType:<nil> 
-            BootstrapContext:<nil> 
-            Claims:[] 
-            IsAuthenticated:false 
-            Label:<nil> 
-            Name:<nil> 
-            NameClaimType:http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name 
-            RoleClaimType:http://schemas.microsoft.com/ws/2008/06/identity/claims/role
-        ]
-    ] 
+        [
+            map[
+                Actor:<nil> 
+                AuthenticationType:<nil> 
+                BootstrapContext:<nil> 
+                Claims:[] 
+                IsAuthenticated:false 
+                Label:<nil> 
+                Name:<nil> 
+                NameClaimType:http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name 
+                RoleClaimType:http://schemas.microsoft.com/ws/2008/06/identity/claims/role
+            ]
+        ] 
     Method:GET 
     Params:map[] 
-    Query:map[host:Rose name:Micky] 
-    Url:https://gofunction.azurewebsites.net/api/HttpTriggerWithOutputs?name=Micky&host=Rose
+    Query:map[host:Rose,JJ,Lili,LuLu name:Micky] 
+    Url:https://gofunction.azurewebsites.net/api/HttpTriggerWithOutputs?name=Micky&host=Rose&host=JJ,Lili,LuLu
 ]
 
 2023-03-05T07:33:31Z   [Information]   Type of invokeReq.Metadata: map[string]interface {}

@@ -11,30 +11,25 @@ import (
 )
 
 type DataHttpRequest struct {
-	Request http.Request
-	URL     *url.URL
-	Method  string
-	Query   map[string]string
-	Headers map[string][]string
+	//Request http.Request
+	URL    *url.URL
+	Method string
+	Header map[string][]string
 	//Identities map[string]interface{}
 	//Params     map[string]interface{}
-	//Url     string
-	//Method  string
-	//Query   map[string]string
-	//Headers map[string][]string
 }
 
 func (r DataHttpRequest) String() string {
 	var buffer bytes.Buffer
 
-	buffer.WriteString(fmt.Sprintf("URL:%v\n" + r.Request.URL.String()))
-	buffer.WriteString(fmt.Sprintf("Method:%v\n" + r.Request.Method))
+	buffer.WriteString(fmt.Sprintf("URL:%v\n" + r.URL.String()))
+	buffer.WriteString(fmt.Sprintf("Method:%v\n" + r.Method))
 	buffer.WriteString(fmt.Sprintf("Headers:\n"))
-	for k, v := range r.Request.Header {
+	for k, v := range r.Header {
 		buffer.WriteString(fmt.Sprintf("\t%v=%v\n", k, v))
 	}
 	buffer.WriteString(fmt.Sprintf("Query:\n"))
-	for k, v := range r.Request.URL.Query() {
+	for k, v := range r.URL.Query() {
 		buffer.WriteString(fmt.Sprintf("\t%v=%v\n", k, v))
 	}
 	return buffer.String()
@@ -141,7 +136,7 @@ func HttpRequestMetaData(ir *InvokeRequest, bindingName string) *DataHttpRequest
 func parseDataHttpRequest(req interface{}) *DataHttpRequest {
 	fmt.Println("+--------------------+")
 	fmt.Println("Generating http request data")
-	dataHttpRequest := DataHttpRequest{Request: http.Request{}}
+	dataHttpRequest := DataHttpRequest{}
 
 	var queryValues string
 
@@ -158,21 +153,27 @@ func parseDataHttpRequest(req interface{}) *DataHttpRequest {
 			dataHttpRequest.Method = v.(string)
 		} else if k == "Query" {
 			fmt.Println("converting query")
-			var sb strings.Builder
 			m := v.(map[string]interface{})
+			var buf strings.Builder
 			for mk, mv := range m {
-				sb.WriteString(fmt.Sprintf("%v=%v", mk, mv))
+				hv := mv.([]interface{})
+
+				buf.WriteString(mk)
+				buf.WriteString("=")
+				for i, v := range hv {
+					buf.WriteString(v.(string))
+					if i != len(hv)-1 {
+						buf.WriteString(",")
+					}
+				}
+				buf.WriteString("&")
 			}
-			queryValues = sb.String()
+			queryValues = buf.String()
 		} else if k == "Headers" {
 			fmt.Println("converting headers")
 			m := v.(map[string]interface{})
-
 			hm := make(map[string][]string)
 			for mk, mv := range m {
-				fmt.Println(reflect.TypeOf(mv))
-				//hm[mk][0] = fmt.Sprint(mv)
-
 				hv := mv.([]interface{})
 
 				s := make([]string, len(hv))
@@ -183,14 +184,15 @@ func parseDataHttpRequest(req interface{}) *DataHttpRequest {
 				hm[mk] = s
 
 			}
-			dataHttpRequest.Headers = hm
+			dataHttpRequest.Header = hm
 		}
 	}
 
-	if dataHttpRequest.Request.URL != nil {
+	if dataHttpRequest.URL != nil {
 		fmt.Println("Set raw query :" + queryValues)
-		dataHttpRequest.Request.URL.RawQuery = queryValues
+		dataHttpRequest.URL.RawQuery = queryValues
 	}
+
 	fmt.Println("+--------------------+")
 	return &dataHttpRequest
 }
