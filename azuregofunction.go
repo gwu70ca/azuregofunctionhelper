@@ -12,6 +12,10 @@ import (
 
 type DataHttpRequest struct {
 	Request http.Request
+	URL     *url.URL
+	Method  string
+	Query   map[string]string
+	Headers map[string][]string
 	//Identities map[string]interface{}
 	//Params     map[string]interface{}
 	//Url     string
@@ -146,12 +150,12 @@ func parseDataHttpRequest(req interface{}) *DataHttpRequest {
 	for k, v := range v {
 		fmt.Printf("%v=%v\n", k, v)
 		if k == "Url" {
-			dataHttpRequest.Request.URL, err = url.Parse(v.(string))
+			dataHttpRequest.URL, err = url.Parse(v.(string))
 			if err != nil {
 				fmt.Println(err)
 			}
 		} else if k == "Method" {
-			dataHttpRequest.Request.Method = v.(string)
+			dataHttpRequest.Method = v.(string)
 		} else if k == "Query" {
 			var sb strings.Builder
 			m := v.(map[string]interface{})
@@ -161,6 +165,14 @@ func parseDataHttpRequest(req interface{}) *DataHttpRequest {
 				sb.WriteString(fmt.Sprintf("%v=%v", mk, mv))
 			}
 			queryValues = sb.String()
+		} else if k == "Headers" {
+			hm := make(map[string][]string)
+
+			m := v.(map[string]interface{})
+			for mk, mv := range m {
+				hm[mk] = append(hm[mk], mv.(string))
+			}
+			dataHttpRequest.Headers = hm
 		}
 	}
 
