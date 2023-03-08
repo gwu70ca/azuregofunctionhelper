@@ -61,6 +61,22 @@ const (
 	HttpReqKey  = "req"
 )
 
+func printMap(data map[string]interface{}, tab int) {
+
+	for k, v := range data {
+		if reflect.TypeOf(v).String() == "map[string]interface {}" {
+			tab = tab + 4
+			printMap(v.(map[string]interface{}), tab)
+			continue
+		}
+
+		for i := 0; i < tab; i = i + 1 {
+			fmt.Print(" ")
+		}
+		fmt.Printf("%v=%v\n", k, v)
+	}
+}
+
 func ParseFunctionHostRequest(w http.ResponseWriter, r *http.Request) (*InvokeRequest, error) {
 	fmt.Println("+--------------------+")
 	fmt.Println("Parsing request from function host")
@@ -75,17 +91,25 @@ func ParseFunctionHostRequest(w http.ResponseWriter, r *http.Request) (*InvokeRe
 	}
 	fmt.Println("The JSON data is:")
 	fmt.Println("----------")
-	fmt.Println(fmt.Sprintf("Type of invokeReq.Data: %v", reflect.TypeOf(invokeReq.Data)))
-	for k, v := range invokeReq.Data {
-		fmt.Printf("%v=%v\n", k, v)
-	}
+	//fmt.Println(fmt.Sprintf("Type of invokeReq.Data: %v", reflect.TypeOf(invokeReq.Data)))
+	printMap(invokeReq.Data, 0)
+	/*
+		for k, v := range invokeReq.Data {
+			if reflect.TypeOf(v).String() == "map[string]interface {}" {
+
+				continue
+			}
+			fmt.Printf("%v=%v\n", k, v)
+		}
+	*/
 
 	fmt.Println("The JSON metadata is:")
 	fmt.Println("----------")
-	fmt.Println(fmt.Sprintf("Type of invokeReq.Metadata: %v", reflect.TypeOf(invokeReq.Metadata)))
-	for k, v := range invokeReq.Metadata {
+	//fmt.Println(fmt.Sprintf("Type of invokeReq.Metadata: %v", reflect.TypeOf(invokeReq.Metadata)))
+	printMap(invokeReq.Metadata, 0)
+	/*for k, v := range invokeReq.Metadata {
 		fmt.Printf("%v=%v\n", k, v)
-	}
+	}*/
 	fmt.Println("+--------------------+")
 
 	return &invokeReq, nil
@@ -161,12 +185,6 @@ func parseDataHttpRequest(req interface{}) *DataHttpRequest {
 				buf.WriteString(mk)
 				buf.WriteString("=")
 				buf.WriteString(hv)
-				/*for i, v := range hv {
-					buf.WriteString(v.(string))
-					if i != len(hv)-1 {
-						buf.WriteString(",")
-					}
-				}*/
 				buf.WriteString("&")
 			}
 			queryValues = buf.String()
@@ -183,7 +201,6 @@ func parseDataHttpRequest(req interface{}) *DataHttpRequest {
 				}
 
 				hm[mk] = s
-
 			}
 			dataHttpRequest.Header = hm
 		}
