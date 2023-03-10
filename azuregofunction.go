@@ -98,20 +98,15 @@ func ParseFunctionHostRequest(w http.ResponseWriter, r *http.Request) (*InvokeRe
 	fmt.Println("The JSON data is:")
 	fmt.Println("----------")
 	fmt.Println(fmt.Sprintf("Type of invokeReq.Data: %v", reflect.TypeOf(invokeReq.Data)))
-	printMap(invokeReq.Data, 0)
-
+	//printMap(invokeReq.Data, 0)
 	for k, v := range invokeReq.Data {
-		if reflect.TypeOf(v).String() == "map[string]interface {}" {
-
-			continue
-		}
 		fmt.Printf("%v=%v\n", k, v)
 	}
 
 	fmt.Println("The JSON metadata is:")
 	fmt.Println("----------")
 	fmt.Println(fmt.Sprintf("Type of invokeReq.Metadata: %v", reflect.TypeOf(invokeReq.Metadata)))
-	printMap(invokeReq.Metadata, 0)
+	//printMap(invokeReq.Metadata, 0)
 	for k, v := range invokeReq.Metadata {
 		fmt.Printf("%v=%v\n", k, v)
 	}
