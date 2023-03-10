@@ -62,9 +62,9 @@ const (
 )
 
 func printMap(data map[string]interface{}, tab int) {
-	for k, v := range data {
+	for k, _ := range data {
 		fmt.Println("k:" + k)
-		if k == "gwuBlob" {
+		/*if k == "gwuBlob" {
 			fmt.Println(reflect.TypeOf(v))
 			fmt.Println(reflect.TypeOf(v).String())
 			fmt.Println(reflect.TypeOf(v).Name())
@@ -79,7 +79,7 @@ func printMap(data map[string]interface{}, tab int) {
 				fmt.Print(" ")
 			}
 			fmt.Printf("%v=%v\n", k, v)
-		}
+		}*/
 	}
 }
 
