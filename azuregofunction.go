@@ -62,18 +62,23 @@ const (
 )
 
 func printMap(data map[string]interface{}, tab int) {
-
 	for k, v := range data {
-		if reflect.TypeOf(v).String() == "map[string]interface {}" {
-			tab = tab + 4
-			printMap(v.(map[string]interface{}), tab)
-			continue
-		}
+		if k == "gwuBlob" {
+			fmt.Println(reflect.TypeOf(v))
+			fmt.Println(reflect.TypeOf(v).String())
+			fmt.Println(reflect.TypeOf(v).Name())
+		} else {
+			if reflect.TypeOf(v).String() == "map[string]interface {}" {
+				tab = tab + 4
+				printMap(v.(map[string]interface{}), tab)
+				continue
+			}
 
-		for i := 0; i < tab; i = i + 1 {
-			fmt.Print(" ")
+			for i := 0; i < tab; i = i + 1 {
+				fmt.Print(" ")
+			}
+			fmt.Printf("%v=%v\n", k, v)
 		}
-		fmt.Printf("%v=%v\n", k, v)
 	}
 }
 
