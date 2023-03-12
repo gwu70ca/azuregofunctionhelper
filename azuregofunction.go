@@ -64,7 +64,7 @@ const (
 func printMap(data map[string]interface{}, tab int) {
 	for k, _ := range data {
 		fmt.Println("k:" + k)
-		/*if k == "gwuBlob" {
+		if k == "gwuBlob" {
 			fmt.Println(reflect.TypeOf(v))
 			fmt.Println(reflect.TypeOf(v).String())
 			fmt.Println(reflect.TypeOf(v).Name())
@@ -79,7 +79,7 @@ func printMap(data map[string]interface{}, tab int) {
 				fmt.Print(" ")
 			}
 			fmt.Printf("%v=%v\n", k, v)
-		}*/
+		}
 	}
 }
 
@@ -98,7 +98,7 @@ func ParseFunctionHostRequest(w http.ResponseWriter, r *http.Request) (*InvokeRe
 	fmt.Println("The JSON data is:")
 	fmt.Println("----------")
 	fmt.Println(fmt.Sprintf("Type of invokeReq.Data: %v", reflect.TypeOf(invokeReq.Data)))
-	//printMap(invokeReq.Data, 0)
+	printMap(invokeReq.Data, 0)
 	for k, v := range invokeReq.Data {
 		fmt.Printf("%v=%v\n", k, v)
 	}
@@ -106,7 +106,7 @@ func ParseFunctionHostRequest(w http.ResponseWriter, r *http.Request) (*InvokeRe
 	fmt.Println("The JSON metadata is:")
 	fmt.Println("----------")
 	fmt.Println(fmt.Sprintf("Type of invokeReq.Metadata: %v", reflect.TypeOf(invokeReq.Metadata)))
-	//printMap(invokeReq.Metadata, 0)
+	printMap(invokeReq.Metadata, 0)
 	for k, v := range invokeReq.Metadata {
 		fmt.Printf("%v=%v\n", k, v)
 	}

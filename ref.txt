@@ -11,7 +11,36 @@ $ git tag v0.1.0
 $ git push origin v0.1.0
 $
 
-
+===========================================
+Event Hub
+===========================================
+2023-03-12T07:40:25Z   [Information]   eventHubTriggerHandler
+2023-03-12T07:40:25Z   [Information]   ==================================================
+2023-03-12T07:40:25Z   [Information]   invocationid is: a208c06b-1cf0-4a44-8661-1451796f6e7c 
+2023-03-12T07:40:25Z   [Information]   user agent is: Azure-Functions-Host/4.16.2.2 
+2023-03-12T07:40:25Z   [Information]   +--------------------+
+2023-03-12T07:40:25Z   [Information]   Parsing request from function host
+2023-03-12T07:40:25Z   [Information]   The JSON data is:
+2023-03-12T07:40:25Z   [Information]   ----------
+2023-03-12T07:40:25Z   [Information]   Type of invokeReq.Data: map[string]interface {}
+2023-03-12T07:40:25Z   [Information]   gwuEventHubMessages=["When enableForwardingHttpRequest is true, the behavior of HTTP-only functions differs from the default custom handlers behavior in these ways"]
+2023-03-12T07:40:25Z   [Information]   The JSON metadata is:
+2023-03-12T07:40:25Z   [Information]   ----------
+2023-03-12T07:40:25Z   [Information]   Type of invokeReq.Metadata: map[string]interface {}
+2023-03-12T07:40:25Z   [Information]   sys=map[MethodName:EventHubTrigger RandGuid:b3c331e7-8bf2-4e3b-997f-6e5a0f1d7e40 UtcNow:2023-03-12T07:40:25.1325067Z]
+2023-03-12T07:40:25Z   [Information]   TriggerPartitionContext=map[ConsumerGroup:$Default EventHubName:gofunction FullyQualifiedNamespace:gwueventhub.servicebus.windows.net IsCheckpointingAfterInvocation:true PartitionId:0]
+2023-03-12T07:40:25Z   [Information]   PartitionKeyArray=["b2f2ec93-0d59-4ce9-b36b-a7313422ca1f"]
+2023-03-12T07:40:25Z   [Warning]   Outputs not set on http response for invocationId:a208c06b-1cf0-4a44-8661-1451796f6e7c
+2023-03-12T07:40:25Z   [Information]   OffsetArray=["1744"]
+2023-03-12T07:40:25Z   [Information]   PropertiesArray=[{"MachineName":"DESKTOP-AK48PU4","UserName":"wugreg"}]
+2023-03-12T07:40:25Z   [Information]   Event hub message [["When enableForwardingHttpRequest is true, the behavior of HTTP-only functions differs from the default custom handlers behavior in these ways"]]
+2023-03-12T07:40:25Z   [Information]   SystemPropertiesArray=[{"x-opt-partition-key":"b2f2ec93-0d59-4ce9-b36b-a7313422ca1f","x-opt-sequence-number":20,"x-opt-offset":1744,"x-opt-enqueued-time":"2023-03-12T07:40:24.976+00:00","SequenceNumber":20,"Offset":1744,"PartitionKey":"b2f2ec93-0d59-4ce9-b36b-a7313422ca1f","EnqueuedTimeUtc":"2023-03-12T07:40:24.976"}]
+2023-03-12T07:40:25Z   [Information]   PartitionContext=map[ConsumerGroup:$Default EventHubName:gofunction FullyQualifiedNamespace:gwueventhub.servicebus.windows.net IsCheckpointingAfterInvocation:true PartitionId:0]
+2023-03-12T07:40:25Z   [Information]   SequenceNumberArray=[20]
+2023-03-12T07:40:25Z   [Information]   EnqueuedTimeUtcArray=["2023-03-12T07:40:24.976"]
+2023-03-12T07:40:25Z   [Information]   +--------------------+
+2023-03-12T07:40:25Z   [Information]   Type of event hub message: string
+2023-03-12T07:40:25Z   [Information]   Request [632e495a-2ab5-4df2-ba16-3c5480c8c3dd] POST https://gwugofunctionsa.queue.core.windows.net/eventhub-output/messages
 ==========================================
 Queue
 ===========================================
@@ -62,13 +91,23 @@ Blob
 ===========================================
 Http
 ===========================================
-2023-03-08T08:18:00Z   [Information]   The JSON data is:
-2023-03-08T08:18:00Z   [Information]   ----------
-2023-03-08T08:18:00Z   [Information]   Type of invokeReq.Data: map[string]interface {}
-2023-03-08T08:18:00Z   [Information]   req=map[Headers:map[Accept:[text/html, application/xhtml+xml, application/xml; q=0.9, image/webp, image/apng, */*; q=0.8, application/signed-exchange; v=b3; q=0.7] Accept-Encoding:[gzip, deflate, br] Accept-Language:[en-US, en; q=0.9] CLIENT-IP:[20.69.149.128:2816] Content-Length:[0] DISGUISED-HOST:[gofunction.azurewebsites.net] Host:[gofunction.azurewebsites.net] Max-Forwards:[10] Request-Id:[|ff52b34b-48ed1afb0ebcec09.1.] Sec-Fetch-Dest:[document] Sec-Fetch-Mode:[navigate] Sec-Fetch-Site:[none] Sec-Fetch-User:[?1] User-Agent:[Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36 Edg/110.0.1587.63] WAS-DEFAULT-HOSTNAME:[gofunction.azurewebsites.net] X-ARR-LOG-ID:[6ba78dbd-a0ef-4d4a-ae8e-e5a35ff6f90f] X-ARR-SSL:[2048|256|CN=Microsoft Azure TLS Issuing CA 05, O=Microsoft Corporation, C=US|CN=*.azurewebsites.net, O=Microsoft Corporation, L=Redmond, S=WA, C=US] X-AppService-Proto:[https] X-Client-IP:[20.69.149.128] X-Client-Port:[2816] X-Forwarded-For:[20.69.149.128:2816] X-Forwarded-Proto:[https] X-Forwarded-TlsVersion:[1.2] X-Original-URL:[/api/HttpTriggerStringReturnValue] X-SITE-DEPLOYMENT-ID:[gofunction] X-WAWS-Unencoded-URL:[/api/HttpTriggerStringReturnValue] sec-ch-ua:["Chromium";v="110", "Not A(Brand";v="24", "Microsoft Edge";v="110"] sec-ch-ua-mobile:[?0] sec-ch-ua-platform:["Windows"]] Identities:[map[Actor:<nil> AuthenticationType:<nil> BootstrapContext:<nil> Claims:[] IsAuthenticated:false Label:<nil> Name:<nil> NameClaimType:http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name RoleClaimType:http://schemas.microsoft.com/ws/2008/06/identity/claims/role]] Method:GET Params:map[] Query:map[] Url:https://gofunction.azurewebsites.net/api/HttpTriggerStringReturnValue]
-2023-03-08T08:18:00Z   [Information]   The JSON metadata is:
-2023-03-08T08:18:00Z   [Information]   ----------
-2023-03-08T08:18:00Z   [Information]   Type of invokeReq.Metadata: map[string]interface {}
-2023-03-08T08:18:00Z   [Information]   Query=map[]
-2023-03-08T08:18:00Z   [Information]   Headers=map[Accept:text/html, application/xhtml+xml, application/xml; q=0.9, image/webp, image/apng, */*; q=0.8, application/signed-exchange; v=b3; q=0.7 Accept-Encoding:gzip, deflate, br Accept-Language:en-US, en; q=0.9 CLIENT-IP:20.69.149.128:2816 Content-Length:0 DISGUISED-HOST:gofunction.azurewebsites.net Host:gofunction.azurewebsites.net Max-Forwards:10 Request-Id:|ff52b34b-48ed1afb0ebcec09.1. Sec-Fetch-Dest:document Sec-Fetch-Mode:navigate Sec-Fetch-Site:none Sec-Fetch-User:?1 User-Agent:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36 Edg/110.0.1587.63 WAS-DEFAULT-HOSTNAME:gofunction.azurewebsites.net X-ARR-LOG-ID:6ba78dbd-a0ef-4d4a-ae8e-e5a35ff6f90f X-ARR-SSL:2048|256|CN=Microsoft Azure TLS Issuing CA 05, O=Microsoft Corporation, C=US|CN=*.azurewebsites.net, O=Microsoft Corporation, L=Redmond, S=WA, C=US X-AppService-Proto:https X-Client-IP:20.69.149.128 X-Client-Port:2816 X-Forwarded-For:20.69.149.128:2816 X-Forwarded-Proto:https X-Forwarded-TlsVersion:1.2 X-Original-URL:/api/HttpTriggerStringReturnValue X-SITE-DEPLOYMENT-ID:gofunction X-WAWS-Unencoded-URL:/api/HttpTriggerStringReturnValue sec-ch-ua:"Chromium";v="110", "Not A(Brand";v="24", "Microsoft Edge";v="110" sec-ch-ua-mobile:?0 sec-ch-ua-platform:"Windows"]
-2023-03-08T08:18:00Z   [Information]   sys=map[MethodName:HttpTriggerStringReturnValue RandGuid:f98df5bb-da81-454c-b66a-455de7eb6410 UtcNow:2023-03-08T08:17:59.6062483Z]
+2023-03-10T17:30:50Z   [Information]   httpTriggerHandlerStringReturnValue
+2023-03-10T17:30:50Z   [Information]   ==================================================
+2023-03-10T17:30:50Z   [Information]   invocationid is: 6792992c-cc4f-419d-aa0b-f4c7a4d6ae84 
+2023-03-10T17:30:50Z   [Information]   user agent is: Azure-Functions-Host/4.16.2.2 
+2023-03-10T17:30:50Z   [Information]   +--------------------+
+2023-03-10T17:30:50Z   [Information]   Parsing request from function host
+2023-03-10T17:30:50Z   [Information]   The JSON data is:
+2023-03-10T17:30:50Z   [Information]   ----------
+2023-03-10T17:30:50Z   [Information]   Type of invokeReq.Data: map[string]interface {}
+2023-03-10T17:30:50Z   [Information]   req=map[Headers:map[Accept:[text/html, application/xhtml+xml, application/xml; q=0.9, image/webp, image/apng, */*; q=0.8, application/signed-exchange; v=b3; q=0.7] Accept-Encoding:[gzip, deflate, br] Accept-Language:[en-US, en; q=0.9] CLIENT-IP:[24.18.126.161:50636] Cache-Control:[max-age=0] Content-Length:[0] DISGUISED-HOST:[gwugofunction.azurewebsites.net] Host:[gwugofunction.azurewebsites.net] Max-Forwards:[10] Request-Id:[|d0c2803c-4279eadb771cd0aa.1.] Sec-Fetch-Dest:[document] Sec-Fetch-Mode:[navigate] Sec-Fetch-Site:[none] Sec-Fetch-User:[?1] User-Agent:[Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36 Edg/110.0.1587.69] WAS-DEFAULT-HOSTNAME:[gwugofunction.azurewebsites.net] X-ARR-LOG-ID:[295ad4de-f4b0-429b-a51f-ab3e7df8a0c5] X-ARR-SSL:[2048|256|CN=Microsoft Azure TLS Issuing CA 05, O=Microsoft Corporation, C=US|CN=*.azurewebsites.net, O=Microsoft Corporation, L=Redmond, S=WA, C=US] X-AppService-Proto:[https] X-Client-IP:[24.18.126.161] X-Client-Port:[50636] X-Forwarded-For:[24.18.126.161:50636] X-Forwarded-Proto:[https] X-Forwarded-TlsVersion:[1.2] X-Original-URL:[/api/HttpTriggerStringReturnValue?os=Windows&os=Linux&db=SQLServer&db=PostgresSQL&db=MongoDB] X-SITE-DEPLOYMENT-ID:[gwugofunction] X-WAWS-Unencoded-URL:[/api/HttpTriggerStringReturnValue?os=Windows&os=Linux&db=SQLServer&db=PostgresSQL&db=MongoDB] sec-ch-ua:["Chromium";v="110", "Not A(Brand";v="24", "Microsoft Edge";v="110"] sec-ch-ua-mobile:[?0] sec-ch-ua-platform:["Windows"]] Identities:[map[Actor:<nil> AuthenticationType:<nil> BootstrapContext:<nil> Claims:[] IsAuthenticated:false Label:<nil> Name:<nil> NameClaimType:http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name RoleClaimType:http://schemas.microsoft.com/ws/2008/06/identity/claims/role]] Method:GET Params:map[] Query:map[db:SQLServer,PostgresSQL,MongoDB os:Windows,Linux] Url:https://gwugofunction.azurewebsites.net/api/HttpTriggerStringReturnValue?os=Windows&os=Linux&db=SQLServer&db=PostgresSQL&db=MongoDB]
+2023-03-10T17:30:50Z   [Verbose]   Received invocation response for function: 'HttpTriggerStringReturnValue' invocationId: '6792992c-cc4f-419d-aa0b-f4c7a4d6ae84'
+2023-03-10T17:30:50Z   [Information]   The JSON metadata is:
+2023-03-10T17:30:50Z   [Information]   ----------
+2023-03-10T17:30:50Z   [Information]   Type of invokeReq.Metadata: map[string]interface {}
+2023-03-10T17:30:50Z   [Information]   Headers=map[Accept:text/html, application/xhtml+xml, application/xml; q=0.9, image/webp, image/apng, */*; q=0.8, application/signed-exchange; v=b3; q=0.7 Accept-Encoding:gzip, deflate, br Accept-Language:en-US, en; q=0.9 CLIENT-IP:24.18.126.161:50636 Cache-Control:max-age=0 Content-Length:0 DISGUISED-HOST:gwugofunction.azurewebsites.net Host:gwugofunction.azurewebsites.net Max-Forwards:10 Request-Id:|d0c2803c-4279eadb771cd0aa.1. Sec-Fetch-Dest:document Sec-Fetch-Mode:navigate Sec-Fetch-Site:none Sec-Fetch-User:?1 User-Agent:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36 Edg/110.0.1587.69 WAS-DEFAULT-HOSTNAME:gwugofunction.azurewebsites.net X-ARR-LOG-ID:295ad4de-f4b0-429b-a51f-ab3e7df8a0c5 X-ARR-SSL:2048|256|CN=Microsoft Azure TLS Issuing CA 05, O=Microsoft Corporation, C=US|CN=*.azurewebsites.net, O=Microsoft Corporation, L=Redmond, S=WA, C=US X-AppService-Proto:https X-Client-IP:24.18.126.161 X-Client-Port:50636 X-Forwarded-For:24.18.126.161:50636 X-Forwarded-Proto:https X-Forwarded-TlsVersion:1.2 X-Original-URL:/api/HttpTriggerStringReturnValue?os=Windows&os=Linux&db=SQLServer&db=PostgresSQL&db=MongoDB X-SITE-DEPLOYMENT-ID:gwugofunction X-WAWS-Unencoded-URL:/api/HttpTriggerStringReturnValue?os=Windows&os=Linux&db=SQLServer&db=PostgresSQL&db=MongoDB sec-ch-ua:"Chromium";v="110", "Not A(Brand";v="24", "Microsoft Edge";v="110" sec-ch-ua-mobile:?0 sec-ch-ua-platform:"Windows"]
+2023-03-10T17:30:50Z   [Information]   sys=map[MethodName:HttpTriggerStringReturnValue RandGuid:cc2ae898-ff49-4d74-a110-459ab1f2559b UtcNow:2023-03-10T17:30:50.2302574Z]
+2023-03-10T17:30:50Z   [Information]   os="Linux"
+2023-03-10T17:30:50Z   [Information]   db="MongoDB"
+2023-03-10T17:30:50Z   [Information]   Query=map[db:MongoDB os:Linux]
+2023-03-10T17:30:50Z   [Information]   +--------------------+
