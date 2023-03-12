@@ -62,7 +62,7 @@ const (
 )
 
 func printMap(data map[string]interface{}, tab int) {
-	for k, _ := range data {
+	for k, v := range data {
 		fmt.Println("k:" + k)
 		if k == "gwuBlob" {
 			fmt.Println(reflect.TypeOf(v))
