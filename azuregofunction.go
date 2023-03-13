@@ -206,10 +206,10 @@ func parseDataHttpRequest(req interface{}) *DataHttpRequest {
 					s[i] = fmt.Sprint(v)
 				}
 
-				if mk == "CLIENT-IP" {
-					dataHttpRequest.RemoteAddr = v.(string)
+				if mk == "X-CLIENT-IP" {
+					dataHttpRequest.RemoteAddr = s[0]
 				} else if mk == "User-Agent" {
-					dataHttpRequest.userAgent = v.(string)
+					dataHttpRequest.userAgent = s[0]
 				}
 
 				hm[mk] = s
