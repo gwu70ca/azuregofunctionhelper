@@ -11,9 +11,9 @@ $ git tag v0.1.0
 $ git push origin v0.1.0
 $
 
-===========================================
+======================================================================================
 Event Hub
-===========================================
+======================================================================================
 2023-03-12T07:40:25Z   [Information]   eventHubTriggerHandler
 2023-03-12T07:40:25Z   [Information]   ==================================================
 2023-03-12T07:40:25Z   [Information]   invocationid is: a208c06b-1cf0-4a44-8661-1451796f6e7c 
@@ -41,9 +41,9 @@ Event Hub
 2023-03-12T07:40:25Z   [Information]   +--------------------+
 2023-03-12T07:40:25Z   [Information]   Type of event hub message: string
 2023-03-12T07:40:25Z   [Information]   Request [632e495a-2ab5-4df2-ba16-3c5480c8c3dd] POST https://gwugofunctionsa.queue.core.windows.net/eventhub-output/messages
-==========================================
+======================================================================================
 Queue
-===========================================
+======================================================================================
 2023-03-07T09:35:48Z   [Information]   queueTriggerHandler
 2023-03-07T09:35:48Z   [Information]   ==================================================
 2023-03-07T09:35:48Z   [Information]   invocationid is: 4f6a1c40-34ec-4fec-a2de-2a515c8bafa9 
@@ -66,9 +66,9 @@ Queue
 2023-03-07T09:35:48Z   [Information]   PopReceipt="AgAAAAMAAAAAAAAAWUB6mNlQ2QE="
 2023-03-07T09:35:48Z   [Information]   sys=map[MethodName:QueueTrigger RandGuid:7672e94d-700c-4470-8fd0-efbefc5301fc UtcNow:2023-03-07T09:35:48.0473285Z]
 2023-03-07T09:35:48Z   [Information]   +--------------------+
-===========================================
+======================================================================================
 Blob
-===========================================
+======================================================================================
 2023-03-07T17:47:36Z   [Information]   blobTriggerHandler
 2023-03-07T17:47:36Z   [Information]   ==================================================
 2023-03-07T17:47:36Z   [Information]   invocationid is: b3a12174-1439-4712-9a11-8aa26b5e8672 
@@ -88,9 +88,9 @@ Blob
 2023-03-07T17:47:36Z   [Information]   Properties=map[AppendBlobCommittedBlockCount:<nil> BlobTierInferred:false BlobTierLastModifiedTime:<nil> BlobType:2 CacheControl:<nil> ContentDisposition:<nil> ContentEncoding:<nil> ContentLanguage:<nil> ContentMD5:TJomRCIhymU9EBpUpOTXeQ== ContentType:application/vnd.openxmlformats-officedocument.wordprocessingml.document Created:2023-03-07T17:47:25+00:00 DeletedTime:<nil> ETag:"0x8DB1F3403647286" EncryptionScope:<nil> IsIncrementalCopy:false IsServerEncrypted:true LastModified:2023-03-07T17:47:25+00:00 LeaseDuration:0 LeaseState:1 LeaseStatus:2 Length:232267 PageBlobSequenceNumber:<nil> PremiumPageBlobTier:<nil> RehydrationStatus:<nil> RemainingDaysBeforePermanentDelete:<nil> StandardBlobTier:0]
 2023-03-07T17:47:36Z   [Information]   Metadata=map[]
 2023-03-07T17:47:36Z   [Information]   +--------------------+
-===========================================
+======================================================================================
 Http
-===========================================
+======================================================================================
 2023-03-10T17:30:50Z   [Information]   httpTriggerHandlerStringReturnValue
 2023-03-10T17:30:50Z   [Information]   ==================================================
 2023-03-10T17:30:50Z   [Information]   invocationid is: 6792992c-cc4f-419d-aa0b-f4c7a4d6ae84 

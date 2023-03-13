@@ -12,11 +12,17 @@ import (
 
 type DataHttpRequest struct {
 	//Request http.Request
-	URL    *url.URL
-	Method string
-	Header map[string][]string
+	URL        *url.URL
+	Method     string
+	Header     map[string][]string
+	RemoteAddr string
+	userAgent  string
 	//Identities map[string]interface{}
 	//Params     map[string]interface{}
+}
+
+func (r DataHttpRequest) UserAgent() string {
+	return r.userAgent
 }
 
 func (r DataHttpRequest) String() string {
@@ -203,7 +209,12 @@ func parseDataHttpRequest(req interface{}) *DataHttpRequest {
 				hm[mk] = s
 			}
 			dataHttpRequest.Header = hm
+		} else if k == "CLIENT-IP" {
+			dataHttpRequest.RemoteAddr = v.(string)
+		} else if k == "User-Agent" {
+			dataHttpRequest.userAgent = v.(string)
 		}
+
 	}
 
 	if dataHttpRequest.URL != nil {
