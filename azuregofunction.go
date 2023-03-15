@@ -201,16 +201,13 @@ func parseDataHttpRequest(req interface{}) *DataHttpRequest {
 			for mk, mv := range m {
 				fmt.Printf("%v=%v\n", mk, mv)
 
-				/*hv := mv.([]interface{})
-				fmt.Printf("\thv:%v\n", hv)
-
-				s := make([]string, len(hv))
-				for i, v := range hv {
-					s[i] = fmt.Sprint(v)
-				}
-				fmt.Printf("\ts: %v\n", s)*/
-
-				if mk == "X-CLIENT-IP" {
+				if mk == "CLIENT-IP" {
+					s := getStringValue(mv)
+					fmt.Println(s)
+				} else if mk == "Accept-Language" {
+					s := getStringValue(mv)
+					fmt.Println(s)
+				} else if mk == "X-CLIENT-IP" {
 					s := getStringValue(mv)
 					dataHttpRequest.RemoteAddr = s[0]
 					headerMap[mk] = s
