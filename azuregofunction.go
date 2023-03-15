@@ -201,22 +201,25 @@ func parseDataHttpRequest(req interface{}) *DataHttpRequest {
 			for mk, mv := range m {
 				fmt.Printf("%v=%v\n", mk, mv)
 
-				hv := mv.([]interface{})
+				/*hv := mv.([]interface{})
 				fmt.Printf("\thv:%v\n", hv)
 
 				s := make([]string, len(hv))
 				for i, v := range hv {
 					s[i] = fmt.Sprint(v)
 				}
-				fmt.Printf("\ts: %v\n", s)
+				fmt.Printf("\ts: %v\n", s)*/
 
 				if mk == "X-CLIENT-IP" {
+					s := getStringValue(mv)
 					dataHttpRequest.RemoteAddr = s[0]
+					headerMap[mk] = s
 				} else if mk == "User-Agent" {
+					s := getStringValue(mv)
 					dataHttpRequest.userAgent = s[0]
+					headerMap[mk] = s
 				}
 
-				headerMap[mk] = s
 			}
 			dataHttpRequest.Header = headerMap
 		}
@@ -230,4 +233,17 @@ func parseDataHttpRequest(req interface{}) *DataHttpRequest {
 
 	fmt.Println("*--------------------*")
 	return &dataHttpRequest
+}
+
+func getStringValue(mv interface{}) []string {
+	hv := mv.([]interface{})
+	fmt.Printf("\t==>hv:%v\n", hv)
+
+	s := make([]string, len(hv))
+	for i, v := range hv {
+		s[i] = fmt.Sprint(v)
+	}
+	fmt.Printf("\t==>s: %v\n", s)
+
+	return s
 }
