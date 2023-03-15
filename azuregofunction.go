@@ -182,7 +182,6 @@ func parseDataHttpRequest(req interface{}) *DataHttpRequest {
 		} else if k == "Method" {
 			dataHttpRequest.Method = v.(string)
 		} else if k == "Query" {
-			fmt.Println("converting query")
 			m := v.(map[string]interface{})
 			var buf strings.Builder
 			for mk, mv := range m {
