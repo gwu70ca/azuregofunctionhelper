@@ -164,7 +164,7 @@ func HttpRequestMetaData(ir *InvokeRequest, bindingName string) *DataHttpRequest
 */
 
 func parseDataHttpRequest(req interface{}) *DataHttpRequest {
-	fmt.Println("+--------------------+")
+	fmt.Println("*--------------------*")
 	fmt.Println("Generating http request data")
 	dataHttpRequest := DataHttpRequest{}
 
@@ -203,13 +203,13 @@ func parseDataHttpRequest(req interface{}) *DataHttpRequest {
 				fmt.Printf("%v=%v\n", mk, mv)
 
 				hv := mv.([]interface{})
-				fmt.Printf("\t%v\n", hv)
+				fmt.Printf("\thv:%v\n", hv)
 
 				s := make([]string, len(hv))
 				for i, v := range hv {
 					s[i] = fmt.Sprint(v)
 				}
-				fmt.Printf("\t%v\n", s)
+				fmt.Printf("\ts: %v\n", s)
 
 				if mk == "X-CLIENT-IP" {
 					dataHttpRequest.RemoteAddr = s[0]
@@ -229,6 +229,6 @@ func parseDataHttpRequest(req interface{}) *DataHttpRequest {
 		dataHttpRequest.URL.RawQuery = queryValues
 	}
 
-	fmt.Println("+--------------------+")
+	fmt.Println("*--------------------*")
 	return &dataHttpRequest
 }
