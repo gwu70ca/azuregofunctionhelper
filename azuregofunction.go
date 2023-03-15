@@ -196,15 +196,20 @@ func parseDataHttpRequest(req interface{}) *DataHttpRequest {
 			queryValues = buf.String()
 		} else if k == "Headers" {
 			fmt.Println("converting headers")
+
 			m := v.(map[string]interface{})
-			hm := make(map[string][]string)
+			headerMap := make(map[string][]string)
 			for mk, mv := range m {
+				fmt.Printf("%v=%v\n", mk, mv)
+
 				hv := mv.([]interface{})
+				fmt.Printf("\t%v\n", hv)
 
 				s := make([]string, len(hv))
 				for i, v := range hv {
 					s[i] = fmt.Sprint(v)
 				}
+				fmt.Printf("\t%v\n", s)
 
 				if mk == "X-CLIENT-IP" {
 					dataHttpRequest.RemoteAddr = s[0]
@@ -212,9 +217,9 @@ func parseDataHttpRequest(req interface{}) *DataHttpRequest {
 					dataHttpRequest.userAgent = s[0]
 				}
 
-				hm[mk] = s
+				headerMap[mk] = s
 			}
-			dataHttpRequest.Header = hm
+			dataHttpRequest.Header = headerMap
 		}
 
 	}
